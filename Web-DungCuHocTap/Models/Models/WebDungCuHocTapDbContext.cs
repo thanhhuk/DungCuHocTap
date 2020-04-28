@@ -8,7 +8,7 @@ namespace Web_DungCuHocTap.Models.Models
     public partial class WebDungCuHocTapDbContext : DbContext
     {
         public WebDungCuHocTapDbContext()
-            : base("name=WebDungCuHocTapDbContext1")
+            : base("name=WebDungCuHocTapDbContext")
         {
         }
 

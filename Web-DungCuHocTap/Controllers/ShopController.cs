@@ -12,8 +12,23 @@ namespace ThucTapNhom_WebDungCuHocTap.Controllers
         // GET: Shop
         public ActionResult DanhSachSanPham()
         {
-            List<SanPham> list = new WebDungCuHocTap().SanPhams.ToList();
+            List<SanPham> list = new WebDungCuHocTapDbContext().SanPhams.ToList();
             return View(list);
+        }
+
+        public ActionResult ChiTietSanPham(int id)
+        {
+            SanPham item = new WebDungCuHocTapDbContext().SanPhams.Find(id);
+            if (item == null)
+            {
+                return HttpNotFound(); //404
+            }
+            return View(item);
+        }
+
+        public ActionResult AloAlo()
+        {
+            return View();
         }
     }
 }

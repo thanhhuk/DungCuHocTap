@@ -133,17 +133,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAO\Admin.cs" />
-    <Compile Include="Models\DAO\ChiTietDH.cs" />
-    <Compile Include="Models\DAO\ChiTietSP.cs" />
-    <Compile Include="Models\DAO\DatHang.cs" />
-    <Compile Include="Models\DAO\GiamGia.cs" />
-    <Compile Include="Models\DAO\KhachHang.cs" />
-    <Compile Include="Models\DAO\Loai.cs" />
-    <Compile Include="Models\DAO\NhaCC.cs" />
-    <Compile Include="Models\DAO\SanPham.cs" />
-    <Compile Include="Models\DAO\TrangThaiDH.cs" />
-    <Compile Include="Models\DAO\WebDungCuHocTapDbContext.cs" />
     <Compile Include="Models\Models\Admin.cs" />
     <Compile Include="Models\Models\ChiTietDH.cs" />
     <Compile Include="Models\Models\ChiTietSP.cs" />
@@ -196,6 +185,7 @@
     <Content Include="Assets\css\responsive.css" />
     <Content Include="Assets\fonts\fontawesome-webfonte0a5.svg" />
     <Content Include="Assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Assets\images\anh1.png" />
     <Content Include="Assets\js\bootstrap.min.js" />
     <Content Include="Assets\js\jquery.bxslider.min.js" />
     <Content Include="Assets\js\jquery.fancybox.js" />
@@ -259,9 +249,11 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Shared\_Cart.cshtml" />
     <Content Include="Views\Shop\DanhSachSanPham.cshtml" />
+    <Content Include="Views\Shop\ChiTietSanPham.cshtml" />
+    <Content Include="Views\Shared\_NavPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Assets\images\" />
+    <Folder Include="Models\DAO\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -117,6 +117,10 @@
                     $(item).load(url);
                 }
             });
+
+             $.get("@Url.Action("NavbarPartial", "Home")", function (data) {
+                 $("#navbar-data").append(data);
+            });
         })
     </script>
     @RenderSection("scripts", required: false)

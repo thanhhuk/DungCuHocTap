@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Web_DungCuHocTap.Models.Models;
 
 namespace Web_DungCuHocTap.Controllers
 {
@@ -25,6 +26,12 @@ namespace Web_DungCuHocTap.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult NavbarPartial()
+        {
+            var list = new WebDungCuHocTapDbContext().Loais.ToList();
+            return PartialView("_NavPartial", list);
         }
     }
 }
