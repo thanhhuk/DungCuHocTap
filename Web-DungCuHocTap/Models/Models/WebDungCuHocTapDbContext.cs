@@ -25,16 +25,6 @@ namespace Web_DungCuHocTap.Models.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Color>()
-                .HasMany(e => e.ChiTietDHs)
-                .WithOptional(e => e.Color)
-                .HasForeignKey(e => e.MaMau);
-
-            modelBuilder.Entity<Color>()
-                .HasMany(e => e.ChiTietSPs)
-                .WithOptional(e => e.Color)
-                .HasForeignKey(e => e.MaMau);
-
             modelBuilder.Entity<DatHang>()
                 .Property(e => e.TongTien)
                 .HasPrecision(18, 0);

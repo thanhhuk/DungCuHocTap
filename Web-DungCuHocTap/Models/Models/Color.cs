@@ -17,14 +17,11 @@ namespace Web_DungCuHocTap.Models.Models
         }
 
         [Key]
-        public int MaNCC { get; set; }
+        public int MaMau { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string TenNCC { get; set; }
-
-        [StringLength(255)]
-        public string DiaChiNCC { get; set; }
+        public string TenMau { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChiTietDH> ChiTietDHs { get; set; }
