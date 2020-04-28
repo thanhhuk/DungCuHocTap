@@ -6,11 +6,11 @@ namespace Web_DungCuHocTap.Models.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("NhaCC")]
-    public partial class NhaCC
+    [Table("Color")]
+    public partial class Color
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public NhaCC()
+        public Color()
         {
             ChiTietDHs = new HashSet<ChiTietDH>();
             ChiTietSPs = new HashSet<ChiTietSP>();

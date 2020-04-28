@@ -136,11 +136,11 @@
     <Compile Include="Models\Models\Admin.cs" />
     <Compile Include="Models\Models\ChiTietDH.cs" />
     <Compile Include="Models\Models\ChiTietSP.cs" />
+    <Compile Include="Models\Models\Color.cs" />
     <Compile Include="Models\Models\DatHang.cs" />
     <Compile Include="Models\Models\GiamGia.cs" />
     <Compile Include="Models\Models\KhachHang.cs" />
     <Compile Include="Models\Models\Loai.cs" />
-    <Compile Include="Models\Models\NhaCC.cs" />
     <Compile Include="Models\Models\SanPham.cs" />
     <Compile Include="Models\Models\TrangThaiDH.cs" />
     <Compile Include="Models\Models\WebDungCuHocTapDbContext.cs" />
