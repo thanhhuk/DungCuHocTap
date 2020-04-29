@@ -57,7 +57,7 @@
                                 <!-- <li><a href="wishlist.html">Wishlist</a></li> -->
                                 <li><a href="my-account.html">TÀI KHOẢN CỦA TÔI</a></li>
                                 <li><a href="cart.html">GIỎ HÀNG</a></li>
-                                <li><a href="registration.html">ĐĂNG NHẬP</a></li>
+                                <li><a href="@Url.Action("DangKyDangNhap", "Customer")">ĐĂNG NHẬP</a></li>
                             </ul>
                         </nav>
                     </div>
@@ -74,7 +74,7 @@
                 <div class="col-sm-12">
                     <!-- LOGO START -->
                     <div class="logo">
-                        <a href="index.html">
+                        <a href="@Url.Action("Index", "Home")">
                             <img src="https://res.cloudinary.com/roy139/image/upload/v1585824301/logo1_eqx9zi.png"
                                  width="200px" height="91px" alt="LOGO" />
                         </a>
@@ -82,7 +82,7 @@
                     <!-- LOGO END -->
                     <!-- HEADER-RIGHT-CALLUS START -->
                     <div class="header-right-callus">
-                        <h3>call us free</h3>
+                        <h3>Hotline</h3>
                         <span>0123.456.789</span>
                     </div>
                     <!-- HEADER-RIGHT-CALLUS END -->
@@ -92,16 +92,10 @@
                             <div class="search-product form-group">
                                 <select name="catsearch" class="cat-search">
                                     <option value="">Danh mục</option>
-                                    <option value="2">--Sách 1</option>
-                                    <option value="3">---Sách 2</option>
-                                    <option value="4">--Sách 3</option>
-                                    <option value="5">----Sách 4</option>
-                                    <option value="6">--Sách 5</option>
-                                    <option value="7">----Sách 6</option>
-                                    <option value="8">---Sách 7</option>
-                                    <option value="9">--Sách 8</option>
-                                    <option value="10">--Sách 9</option>
-                                    <option value="10">---Sách 10</option>
+                                    <option value="2">Bút các loại</option>
+                                    <option value="3">Balo học sinh</option>
+                                    <option value="4">Hộp bút</option>
+                                    <option value="5">Dụng cụ khác</option>
                                 </select>
                                 <input type="text" class="form-control search-form" name="s"
                                        placeholder="Enter your search key ... " />
@@ -193,7 +187,7 @@
                             <ul class="list-inline mega-menu">
                                 <li class="active"><a href="@Url.Action("Index", "Home")">Trang chủ</a>
                                 <li>
-                                    <a href="@Url.Action("DanhSachSanPham", "Shop")">sách</a>
+                                    <a href="@Url.Action("DanhSachSanPham", "Shop")">Sản phẩm</a>
                                     <!-- DRODOWN-MEGA-MENU START -->
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
@@ -205,8 +199,8 @@
                                         </div>
                                     </div>
                                 </li>
-                                <li><a href="@Url.Action("Contact", "Home")">contact</a></li>
-                                <li><a href="@Url.Action("About", "Home")">About us</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+                                <li><a href="@Url.Action("About", "Home")">Về chúng tôi</a></li>
                             </ul>
                         </nav>
                     </div>
