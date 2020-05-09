@@ -10,10 +10,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!-- BSTORE-BREADCRUMB START -->
                 <div class="bstore-breadcrumb">
-                    <a href="@Url.Action("Index", "Home")">HOMe<span><i class="fa fa-caret-right"></i> </span> </a>
+                    <a href="@Url.Action("Index", "Home")">Home<span><i class="fa fa-caret-right"></i> </span> </a>
                     <span> <i class="fa fa-caret-right"> </i> </span>
-                    <a href="@Url.Action("DanhSachSanPham", "Shop")"> Shop </a>
-                    <span> Faded Short Sleeves T-shirt </span>
+                    <a href="@Url.Action("DanhSachSanPham", "Shop")"> Danh sách sản phẩm </a>
+                    <span> @Model.TenSP </span>
                 </div>
                 <!-- BSTORE-BREADCRUMB END -->
             </div>
@@ -92,7 +92,7 @@
                                 </div>
                             </div>
                             <div class="single-product-add-cart">
-                                <a class="add-cart-text" title="Add to cart" href="#">Add to cart</a>
+                                <a class="add-cart-text" title="Add to cart" href="javascript:void(0);" id="add-item">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -204,3 +204,18 @@
         </div>
     </div>
 </section>
+
+@section scripts{
+    <script>
+        $(document).ready(function(){
+            $("#add-item").click(function () {
+                $.get("@Url.Action("AddItem", "Cart")", {
+                    "id": "@Model.MaSP"
+                }, function (data) {
+                    alert("Đã thêm vào giỏ hàng");
+                    window.location.href = "@Url.Action("ChiTietSanPham", "Shop", new { id = Model.MaSP })";
+                });
+            });
+        });
+    </script>
+}

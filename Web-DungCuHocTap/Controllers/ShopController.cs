@@ -25,10 +25,5 @@ namespace ThucTapNhom_WebDungCuHocTap.Controllers
             }
             return View(item);
         }
-
-        public ActionResult AloAlo()
-        {
-            return View();
-        }
     }
 }

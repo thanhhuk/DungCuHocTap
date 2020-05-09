@@ -1,5 +1,6 @@
-﻿@{
-    string cookieName = HttpContext.Current.User.Identity.Name;
+﻿@using Web_DungCuHocTap.Models
+@{
+    var session = Session["CartItem"] as List<CartModel>;
 }
 
 <header>
@@ -56,7 +57,7 @@
                                 <li><a href="checkout.html">THANH TOÁN</a></li>
                                 <!-- <li><a href="wishlist.html">Wishlist</a></li> -->
                                 <li><a href="my-account.html">TÀI KHOẢN CỦA TÔI</a></li>
-                                <li><a href="cart.html">GIỎ HÀNG</a></li>
+                                <li><a href="@Url.Action("Cart", "Cart")">GIỎ HÀNG</a></li>
                                 <li><a href="@Url.Action("DangKyDangNhap", "Customer")">ĐĂNG NHẬP</a></li>
                             </ul>
                         </nav>
@@ -119,63 +120,58 @@
                 <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
                     <div class="shopping-cart-out pull-right">
                         <div class="shopping-cart">
-                            <a class="shop-link" href="cart.html" title="View my shopping cart">
-                                <i class="fa fa-shopping-cart cart-icon"></i>
-                                <b>giỏ hàng của tôi</b>
-                                <span class="ajax-cart-quantity">2</span>
-                            </a>
-                            <div class="shipping-cart-overly">
-                                <div class="shipping-item">
-                                    <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                    <div class="shipping-item-image">
-                                        <a href="#"><img src="img/shopping-image.jpg" alt="shopping image" /></a>
+                            @if (session != null)
+                            {
+                                <a class="shop-link" href="@Url.Action("Cart", "Cart")" title="View my shopping cart">
+                                    <i class="fa fa-shopping-cart cart-icon"></i>
+                                    <b>giỏ hàng của tôi</b>
+                                    <span class="ajax-cart-quantity">@session.Count</span>
+                                </a>
+                                <div class="shipping-cart-overly">
+                                    @foreach (var item in session)
+                                    {
+                                        <div class="shipping-item">
+                                            <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
+                                            
+                                            <div class="shipping-item-text">
+                                                <span>
+                                                    2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">
+                                                        @item.SP.TenSP
+                                                    </a>
+                                                </span>
+                                                <span class="pro-quality">
+                                                    <a href="https://www.nxbkimdong.com.vn/">
+                                                        NXB Kim
+                                                        Đồng
+                                                    </a>
+                                                </span>
+                                                <p>@item.SP.GiaSP vnđ</p>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="shipping-total-bill">
+                                        <div class="cart-prices">
+                                            <span class="shipping-cost">$2.00</span>
+                                            <span>Phí ship</span>
+                                        </div>
+                                        <div class="total-shipping-prices">
+                                            <span class="shipping-total">$100</span>
+                                            <span>Tổng tiền</span>
+                                        </div>
                                     </div>
-                                    <div class="shipping-item-text">
-                                        <span>
-                                            2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">
-                                                Sách
-                                                3
-                                            </a>
-                                        </span>
-                                        <span class="pro-quality">
-                                            <a href="https://www.nxbkimdong.com.vn/">
-                                                NXB Kim
-                                                Đồng
-                                            </a>
-                                        </span>
-                                        <p>0đ</p>
-                                    </div>
-                                </div>
-                                <div class="shipping-item">
-                                    <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                    <div class="shipping-item-image">
-                                        <a href="#"><img src="img/shopping-image2.jpg" alt="shopping image" /></a>
-                                    </div>
-                                    <div class="shipping-item-text">
-                                        <span>
-                                            2 <span class="pro-quan-x">x</span> <a href="https://www.nxbtre.com.vn/"
-                                                                                   class="pro-cat">
-                                                Sách 6
-                                            </a>
-                                        </span>
-                                        <span class="pro-quality"><a href="#">NXB trẻ</a></span>
-                                        <p>0đ</p>
-                                    </div>
-                                </div>
-                                <div class="shipping-total-bill">
-                                    <div class="cart-prices">
-                                        <span class="shipping-cost">$2.00</span>
-                                        <span>Phí ship</span>
-                                    </div>
-                                    <div class="total-shipping-prices">
-                                        <span class="shipping-total">$100</span>
-                                        <span>Tổng tiền</span>
+                                    <div class="shipping-checkout-btn">
+                                        <a href="checkout.html">THANH TOÁN <i class="fa fa-chevron-right"></i></a>
                                     </div>
                                 </div>
-                                <div class="shipping-checkout-btn">
-                                    <a href="checkout.html">THANH TOÁN <i class="fa fa-chevron-right"></i></a>
-                                </div>
-                            </div>
+                            }
+                            else
+                            {
+                                <a class="shop-link" href="@Url.Action("Cart", "Cart")" title="View my shopping cart">
+                                    <i class="fa fa-shopping-cart cart-icon"></i>
+                                    <b>giỏ hàng của tôi</b>
+                                    <span class="ajax-cart-quantity">0</span>
+                                </a>
+                            }
                         </div>
                     </div>
                 </div>

@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Cart";
+}
+
+<section class="main-content-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- BSTORE-BREADCRUMB START -->
+                <div class="bstore-breadcrumb">
+                    <a href="@Url.Action("Index", "Home")">Trang chủ</a>
+                    <span><i class="fa fa-caret-right	"></i></span>
+                    <span>Giỏ hàng của tôi</span>
+                </div>
+                <!-- BSTORE-BREADCRUMB END -->
+            </div>
+        </div>
+        <div class="row">
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <!-- RETURNE-CONTINUE-SHOP START -->
+                <div class="returne-continue-shop">
+                    <a href="@Url.Action("Shop", "DanhSachSanPham")" class="continueshoping">
+                        <i class="fa fa-chevron-left"></i>Tiếp tục mua sắm
+                    </a>
+                    <a href="checkout-signin.html" class="procedtocheckout">
+                        Thanh toán<i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+                <!-- RETURNE-CONTINUE-SHOP END -->
+            </div>
+        </div>
+    </div>
+</section>
+
