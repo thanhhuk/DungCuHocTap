@@ -17,7 +17,7 @@ namespace Web_DungCuHocTap.Controllers
         }
 
         [HttpGet]
-        public JsonResult AddItem(int id)
+        public JsonResult AddItem(int id, int quantity)
         {
             var item = new WebDungCuHocTapDbContext().SanPhams.Find(id);
             if (item == null)
@@ -26,12 +26,11 @@ namespace Web_DungCuHocTap.Controllers
             }
             if (Session["CartItem"] == null)
             {
-
                 var cart = new List<CartModel>();
                 cart.Add(new CartModel()
                 {
                     SP = item,
-                    Quantity = 1
+                    Quantity = quantity
                 });
                 Session["CartItem"] = cart;
             }
@@ -41,10 +40,35 @@ namespace Web_DungCuHocTap.Controllers
                 cart.Add(new CartModel()
                 {
                     SP = item,
-                    Quantity = 1
+                    Quantity = quantity
                 });
             }
             return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        public int CheckExist(int id)
+        {
+            //tim vi tri cua id trong tgio hang
+            var cart = Session["CartItem"] as List<CartModel>;
+            for (int i = 0; i < cart.Count; i++)
+            {
+                if (cart[i].SP.MaSP == id)
+                    return i;
+            }
+            return -1;
+        }
+
+        public void DeleteItem(int id, string url)
+        {
+            int index = CheckExist(id);
+            var cart = Session["CartItem"] as List<CartModel>;
+            cart.RemoveAt(index);
+            if (cart.Count == 0)
+            {
+                Session["CartItem"] = null;
+            }
+            //return RedirectToAction("DanhSachSanPham", "Shop");
+            Response.Redirect(url, true);
         }
     }
 }

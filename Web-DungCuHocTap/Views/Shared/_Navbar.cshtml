@@ -89,18 +89,11 @@
                     <!-- HEADER-RIGHT-CALLUS END -->
                     <!-- CATEGORYS-PRODUCT-SEARCH START -->
                     <div class="categorys-product-search">
-                        <form action="#" method="get" class="search-form-cat">
+                        <form action="@Url.Action("DanhSachSanPham", "Shop")" method="get" class="search-form-cat">
                             <div class="search-product form-group">
-                                <select name="catsearch" class="cat-search">
-                                    <option value="">Danh mục</option>
-                                    <option value="2">Bút các loại</option>
-                                    <option value="3">Balo học sinh</option>
-                                    <option value="4">Hộp bút</option>
-                                    <option value="5">Dụng cụ khác</option>
-                                </select>
-                                <input type="text" class="form-control search-form" name="s"
+                                <input type="text" class="form-control search-form" name="search"
                                        placeholder="Enter your search key ... " />
-                                <button class="search-button" value="Search" name="s" type="submit">
+                                <button class="search-button" value="Search" type="submit">
                                     <i class="fa fa-search"></i>
                                 </button>
                             </div>
@@ -122,6 +115,7 @@
                         <div class="shopping-cart">
                             @if (session != null)
                             {
+                                decimal total = 0, subtotal = 0;
                                 <a class="shop-link" href="@Url.Action("Cart", "Cart")" title="View my shopping cart">
                                     <i class="fa fa-shopping-cart cart-icon"></i>
                                     <b>giỏ hàng của tôi</b>
@@ -130,32 +124,42 @@
                                 <div class="shipping-cart-overly">
                                     @foreach (var item in session)
                                     {
+                                        subtotal = 0;
                                         <div class="shipping-item">
-                                            <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                            
+                                            <a href="@Url.Action("DeleteItem", "Cart", new {
+                                                    id = item.SP.MaSP,
+                                                    url = Request.Url.AbsoluteUri
+                                                })" id="delete-button">
+                                                <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
+                                            </a>
+
                                             <div class="shipping-item-text">
                                                 <span>
-                                                    2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">
+                                                    @item.Quantity <span class="pro-quan-x">x</span> <a href="javascript:void(0)" class="pro-cat">
                                                         @item.SP.TenSP
                                                     </a>
                                                 </span>
                                                 <span class="pro-quality">
-                                                    <a href="https://www.nxbkimdong.com.vn/">
+                                                    <a href="javascript:void(0)">
                                                         NXB Kim
                                                         Đồng
                                                     </a>
                                                 </span>
-                                                <p>@item.SP.GiaSP vnđ</p>
+                                                @{
+                                                    subtotal = item.SP.GiaSP * item.Quantity;
+                                                    total += subtotal;
+                                                }
+                                                <p>@subtotal vnđ</p>
                                             </div>
                                         </div>
                                     }
                                     <div class="shipping-total-bill">
-                                        <div class="cart-prices">
-                                            <span class="shipping-cost">10000 vnđ</span>
-                                            <span>Phí ship</span>
-                                        </div>
+                                        @*<div class="cart-prices">
+                                                <span class="shipping-cost">10000 vnđ</span>
+                                                <span>Phí ship</span>
+                                            </div>*@
                                         <div class="total-shipping-prices">
-                                            <span class="shipping-total"></span>
+                                            <span class="shipping-total">@total</span>
                                             <span>Tổng tiền</span>
                                         </div>
                                     </div>
@@ -188,9 +192,7 @@
                                     <div class="drodown-mega-menu">
                                         <div class="left-mega col-xs-6">
                                             <div class="mega-menu-list">
-                                                <ul id="navbar-data">
-
-                                                </ul>
+                                                <ul id="navbar-data"></ul>
                                             </div>
                                         </div>
                                     </div>
@@ -275,4 +277,3 @@
         </div>
     </header>
 </header>
-

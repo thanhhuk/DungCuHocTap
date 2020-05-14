@@ -1,6 +1,4 @@
-﻿@model List<Web_DungCuHocTap.Models.Models.SanPham>
-
-<section class="main-content-section">
+﻿<section class="main-content-section">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -107,73 +105,14 @@
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <div class="all-gategory-product">
-                    <div class="row">
-                        <ul class="gategory-product">
-
-                            @foreach (var item in Model) //model = list<sanpham>
-                            {
-                                <li class="gategory-product-list col-lg-3 col-md-4 col-sm-6 col-xs-12">
-                                    <div class="single-product-item">
-                                        <div class="product-image">
-                                            <a href="@Url.Action("ChiTietSanPham", "Shop", new { id = item.MaSP })">
-                                                <img src="@item.AnhSP_1" alt="product-image" />
-                                            </a>
-                                            <a href="@Url.Action("ChiTietSanPham", "Shop", new { id = item.MaSP })" class="new-mark-box"> NEW </a>
-                                            <div class="overlay-content">
-                                                <ul>
-                                                    <li>
-                                                        <a href="@Url.Action("ChiTietSanPham", "Shop", new { id = item.MaSP })" title="Quick view"><i class="fa fa-search"></i></a>
-                                                    </li>
-                                                    <li><a href="#" title="Add to cart"><i class="fa fa-shopping-cart"></i></a></li>
-                                                    @*<li><a href="#" title="Like"><i class="fa fa-heart-o"></i></a></li>*@
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="product-info">
-                                            <span class="rate"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></span>
-
-                                            <a href="@Url.Action("ChiTietSanPham", "Shop", new { id = item.MaSP })">@item.TenSP</a>
-                                            <div class="price-box">
-                                                <span class="price">@item.GiaSP VNĐ</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            }
-                        </ul>
+                    <div class="row" id="product-list-partial">
+                    </div>
+                    <div id="load-spinner" align="center">
+                        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/200.gif" />
                     </div>
                 </div>
-                <!-- ALL GATEGORY-PRODUCT END -->
-                <!-- PRODUCT-SHOOTING-RESULT START -->
                 <div class="product-shooting-result product-shooting-result-border">
-                    @*<form action="#">
-                        <button class="btn compare-button">
-                            Compare (<strong class="compare-value">1</strong>)
-                            <i class="fa fa-chevron-right"></i>
-                        </button>
-                    </form>*@
-                    <div class="showing-item">
-                        <span>Showing 1 - 12 of 13 items</span>
-                    </div>
-                    <div class="showing-next-prev">
-                        <ul class="pagination-bar">
-                            <li class="disabled">
-                                <a href="#"><i class="fa fa-chevron-left"></i>Previous</a>
-                            </li>
-                            <li class="active">
-                                <span><a class="pagi-num" href="#">1</a></span>
-                            </li>
-                            <li>
-                                <span><a class="pagi-num" href="#">2</a></span>
-                            </li>
-                            <li>
-                                <a href="#">Next<i class="fa fa-chevron-right"></i></a>
-                            </li>
-                        </ul>
-                        <form action="#">
-                            <button class="btn showall-button">Show all</button>
-                        </form>
-                    </div>
+                    <button class="btn showall-button" id="show-more-btn">Show more</button>
                 </div>
                 <!-- PRODUCT-SHOOTING-RESULT END -->
             </div>
@@ -181,26 +120,28 @@
     </div>
 </section>
 
-@*<table class="table">
-        <thead>
-            <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Name</th>
-                <th scope="col">Price</th>
-                <th scope="col">The Loai</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <th scope="row">@item.MaSP</th>
-                    <td>@item.TenSP</td>
-                    <td>@item.GiaSP</td>
-                    <td>@item.Loai.TenLoai</td>
-                </tr>
-            }
-        </tbody>
-    </table>*@
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            let index = 0;
+            $.get("@Url.Action("DanhSachPartial", "Shop")", {
+                "index": index,
+                "search": "@ViewBag.search"
+                }, function (data) {
+                    $("#product-list-partial").append(data);
+                    $("#load-spinner").hide();
+                }
+            );
 
-<!--Range price-->
+            $("#show-more-btn").click(function () {
+                $("#load-spinner").show();
+                $.get("@Url.Action("DanhSachPartial", "Shop")", {
+                    "index": ++index
+                }, function (data) {
+                    $("#product-list-partial").append(data);
+                    $("#load-spinner").hide();
+                });
+            });
+        });
+    </script>
+}

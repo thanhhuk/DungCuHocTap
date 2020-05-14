@@ -250,12 +250,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Navbar.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_Cart.cshtml" />
     <Content Include="Views\Shop\DanhSachSanPham.cshtml" />
     <Content Include="Views\Shop\ChiTietSanPham.cshtml" />
     <Content Include="Views\Shared\_NavPartial.cshtml" />
     <Content Include="Views\Customer\DangKyDangNhap.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
+    <Content Include="Views\Shop\DanhSachPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\DAO\" />
