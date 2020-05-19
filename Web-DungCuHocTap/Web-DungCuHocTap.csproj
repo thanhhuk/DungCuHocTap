@@ -256,6 +256,7 @@
     <Content Include="Views\Customer\DangKyDangNhap.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
     <Content Include="Views\Shop\DanhSachPartial.cshtml" />
+    <Content Include="Views\Shop\DanhSachPhanLoai.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\DAO\" />

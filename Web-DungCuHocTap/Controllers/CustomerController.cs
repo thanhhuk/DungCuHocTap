@@ -11,7 +11,7 @@ namespace Web_DungCuHocTap.Controllers
 {
     public class CustomerController : Controller
     {
-        [Route("SignUp")]
+        //[Route("SignUp")]
         public ActionResult DangKyDangNhap()
         {
             return View();

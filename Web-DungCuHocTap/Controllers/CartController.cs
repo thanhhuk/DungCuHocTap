@@ -36,19 +36,16 @@ namespace Web_DungCuHocTap.Controllers
             }
             else
             {
+                var index = CheckExist(id);
                 var cart = Session["CartItem"] as List<CartModel>;
-                cart.Add(new CartModel()
-                {
-                    SP = item,
-                    Quantity = quantity
-                });
+                cart[index].Quantity += quantity;
             }
             return Json(1, JsonRequestBehavior.AllowGet);
         }
 
         public int CheckExist(int id)
         {
-            //tim vi tri cua id trong tgio hang
+            //tim vi tri cua id trong gio hang
             var cart = Session["CartItem"] as List<CartModel>;
             for (int i = 0; i < cart.Count; i++)
             {
@@ -69,6 +66,21 @@ namespace Web_DungCuHocTap.Controllers
             }
             //return RedirectToAction("DanhSachSanPham", "Shop");
             Response.Redirect(url, true);
+        }
+
+        public JsonResult CheckOut(DatHang model)
+        {
+            if (ModelState.IsValid)
+            {
+                model.NgayDatHang = DateTime.Now;
+
+                var db = new WebDungCuHocTapDbContext();
+                db.KhachHangs.Add(model);
+                db.SaveChanges();
+
+                return Json(new { Success = 1 }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { Success = 0 }, JsonRequestBehavior.AllowGet);
         }
     }
 }

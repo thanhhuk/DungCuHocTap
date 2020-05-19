@@ -23,7 +23,7 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- SHOPPING-CART SUMMARY START -->
                     <h2 class="page-title">
-                         <span class="shop-pro-item">
+                        <span class="shop-pro-item">
                             Your shopping cart
                             contains: <span style="color: #ff0000;">@session.Count</span> item(s)
                         </span>
@@ -63,39 +63,39 @@
                                             <p class="product-name">
                                                 <a href="@Url.Action("ChiTietSanPham", "Shop", new {id = item.SP.MaSP})">
                                                     @item.SP.TenSP
-                                            </a>
-                                        </p>
-                                    </td>
-                                    <td class="cart-unit">
-                                        <ul class="price text-right">
-                                            <li class="price">@item.SP.GiaSP.ToString("#,##0") vnđ</li>
-                                        </ul>
-                                    </td>
-                                    <td class="cart_quantity text-center">
-                                        <div class="cart-plus-minus-button">
-                                            <span>@item.Quantity</span>
-                                        </div>
-                                    </td>
-                                    <td class="cart-delete text-center">
-                                        <span>
-                                            <a href="@Url.Action("DeleteItem", "Cart", new {
+                                                </a>
+                                            </p>
+                                        </td>
+                                        <td class="cart-unit">
+                                            <ul class="price text-right">
+                                                <li class="price">@item.SP.GiaSP.ToString("#,##0") vnđ</li>
+                                            </ul>
+                                        </td>
+                                        <td class="cart_quantity text-center">
+                                            <div class="cart-plus-minus-button">
+                                                <span>@item.Quantity</span>
+                                            </div>
+                                        </td>
+                                        <td class="cart-delete text-center">
+                                            <span>
+                                                <a href="@Url.Action("DeleteItem", "Cart", new {
                                                     id = item.SP.MaSP,
                                                     url = Request.Url.AbsoluteUri
                                                 })" class="cart_quantity_delete" title="Delete">
-                                                <i class="fa fa-trash-o"></i>
-                                            </a>
-                                        </span>
-                                    </td>
-                                    @{
-                                        subtotal = (item.SP.GiaSP * item.Quantity);
-                                        total += subtotal;
-                                    }
-                                    <td class="cart-total">
-                                        <span class="price">@subtotal.ToString("#,##0") vnđ</span>
-                                    </td>
+                                                    <i class="fa fa-trash-o"></i>
+                                                </a>
+                                            </span>
+                                        </td>
+                                        @{
+                                            subtotal = (item.SP.GiaSP * item.Quantity);
+                                            total += subtotal;
+                                        }
+                                        <td class="cart-total">
+                                            <span class="price">@subtotal.ToString("#,##0") vnđ</span>
+                                        </td>
 
-                                </tr>
-                            }
+                                    </tr>
+                                }
                             </tbody>
                             <!-- TABLE BODY END -->
                             <!-- TABLE FOOTER START -->
@@ -120,7 +120,7 @@
                     </div>
                     <!-- CART TABLE_BLOCK END -->
                 </div>
-                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                @*<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                     <div class="first_item primari-box mycartaddress-info">
                         <!-- SINGLE ADDRESS START -->
                         <ul class="address">
@@ -161,15 +161,15 @@
                         </ul>
                         <!-- SINGLE ADDRESS END -->
                     </div>
-                </div>
+                </div>*@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!-- RETURNE-CONTINUE-SHOP START -->
                     <div class="returne-continue-shop">
-                        <a href="index.html" class="continueshoping">
+                        <a href="@Url.Action("DanhSachSanPham", "Shop")" class="continueshoping">
                             <i class="fa fa-chevron-left"></i>Continue
                             shopping
                         </a>
-                        <a href="checkout-signin.html" class="procedtocheckout">
+                        <a id="check-out" href="javascript:void(0)" class="procedtocheckout">
                             Proceed to checkout<i class="fa fa-chevron-right"></i>
                         </a>
                     </div>
@@ -178,10 +178,36 @@
             }
             else
             {
-                <h1>Gior hang trong'</h1>
-                <a href="#">Go to shop</a>
-            }
+                <div>
+                    <h2>Chua co san pham nao trong gio hang.</h2>
+                </div>
+                <div class="returne-continue-shop">
+                    <a href="@Url.Action("DanhSachSanPham", "Shop")" class="continueshoping">
+                        <i class="fa fa-chevron-left"></i>Go to
+                        shopping
+                    </a>
+                </div>
+        @*<a href="@Url.Action("DanhSachSanPham", "Shop")"><h1>Go to shop</h1></a>*@
+    }
         </div>
     </div>
 </section>
+
+@section scripts{
+    <script>
+        $(document).ready(function(){
+            $("#Check-out").click(function () {
+
+                $.post("@Url.Action("CheckOut", "Cart")",
+                    {
+                        
+                    },
+                    function (data) {
+                        console.log(data);
+                    }
+                );
+            });
+        });
+    </script>
+}
 
