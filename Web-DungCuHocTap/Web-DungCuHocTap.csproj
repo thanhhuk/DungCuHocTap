@@ -136,6 +136,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\Models\Admin.cs" />
     <Compile Include="Models\Models\ChiTietDH.cs" />
     <Compile Include="Models\Models\ChiTietSP.cs" />

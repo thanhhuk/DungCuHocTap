@@ -20,7 +20,7 @@ namespace Web_DungCuHocTap.Controllers
 
             return View();
         }
-
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

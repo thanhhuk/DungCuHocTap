@@ -1,6 +1,7 @@
 ﻿@using Web_DungCuHocTap.Models
 @{
     var session = Session["CartItem"] as List<CartModel>;
+    string cookiename = HttpContext.Current.User.Identity.Name;
 }
 
 <header>
@@ -58,7 +59,15 @@
                                 <!-- <li><a href="wishlist.html">Wishlist</a></li> -->
                                 <li><a href="@Url.Action("DangKyDangNhap", "Customer")">TÀI KHOẢN CỦA TÔI</a></li>
                                 <li><a href="@Url.Action("Cart", "Cart")">GIỎ HÀNG</a></li>
-                                <li><a href="@Url.Action("DangKyDangNhap", "Customer")">ĐĂNG NHẬP</a></li>
+                                @if (string.IsNullOrEmpty(cookiename))
+                                {
+                                    <li><a href="@Url.Action("DangKyDangNhap", "Customer")">ĐĂNG NHẬP</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="#">Hello @cookiename</a></li>
+                                    <li><a href="@Url.Action("Logout", "Customer")">Logout</a></li>
+                                }
                             </ul>
                         </nav>
                     </div>

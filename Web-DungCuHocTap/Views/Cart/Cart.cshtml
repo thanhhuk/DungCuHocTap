@@ -106,13 +106,19 @@
                                     <td id="total_product" class="price" colspan="1">@total.ToString("#,##0") đ</td>
                                 </tr>
                                 <tr>
-                                    <td class="total-price-container text-right" colspan="3">
+                                    <td class="total-price-container text-center" colspan="3" rowspan="4">
                                         <span>Total</span>
                                     </td>
                                     <td id="total-price-container" class="price" colspan="1">
                                         <span id="total-price">@total.ToString("#,##0") đ</span>
                                     </td>
                                 </tr>
+                                @*<tr class="cart-total-price">
+                                    <td class="total-price-container" text-center colspan="6" rowspan="6">TOTAL</td>
+                                    <td id="total-price-container" class="price" colspan="1">
+                                        <span id="total-price">@total.ToString("#,##0") d</span>
+                                    </td>
+                                </tr>*@
                             </tfoot>
                             <!-- TABLE FOOTER END -->
                         </table>
@@ -169,7 +175,7 @@
                             <i class="fa fa-chevron-left"></i>Continue
                             shopping
                         </a>
-                        <a id="check-out" href="javascript:void(0)" class="procedtocheckout">
+                        <a id="CheckOut" href="javascript:void(0)" class="procedtocheckout">
                             Proceed to checkout<i class="fa fa-chevron-right"></i>
                         </a>
                     </div>
@@ -196,11 +202,11 @@
 @section scripts{
     <script>
         $(document).ready(function(){
-            $("#Check-out").click(function () {
+            $("#CheckOut").click(function () {
 
-                $.post("@Url.Action("CheckOut", "Cart")",
+                $.get("@Url.Action("CheckOut", "Cart")",
                     {
-                        
+                        "TongTien": $("#total-price").val()
                     },
                     function (data) {
                         console.log(data);

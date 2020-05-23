@@ -38,7 +38,16 @@ namespace Web_DungCuHocTap.Controllers
             {
                 var index = CheckExist(id);
                 var cart = Session["CartItem"] as List<CartModel>;
-                cart[index].Quantity += quantity;
+                if (index == -1)
+                {
+                    cart.Add(new CartModel()
+                    {
+                        SP = item,
+                        Quantity = quantity
+                    });
+                }
+                else
+                    cart[index].Quantity += quantity;
             }
             return Json(1, JsonRequestBehavior.AllowGet);
         }
@@ -68,14 +77,17 @@ namespace Web_DungCuHocTap.Controllers
             Response.Redirect(url, true);
         }
 
+        [Authorize]
         public JsonResult CheckOut(DatHang model)
         {
             if (ModelState.IsValid)
             {
                 model.NgayDatHang = DateTime.Now;
+                //model.TongTien = 
+                model.MaTT = 1;
 
                 var db = new WebDungCuHocTapDbContext();
-                db.KhachHangs.Add(model);
+                db.DatHangs.Add(model);
                 db.SaveChanges();
 
                 return Json(new { Success = 1 }, JsonRequestBehavior.AllowGet);

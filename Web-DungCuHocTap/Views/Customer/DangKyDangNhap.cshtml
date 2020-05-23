@@ -78,7 +78,7 @@
                                 <p><a href="#">Quên mật khẩu?</a></p>
                             </div>
                             <div class="submit-button">
-                                <a href="my-account.html" id="signinCreate" class="btn main-btn">
+                                <a href="javascript:void(0)" id="signinCreate" class="btn main-btn">
                                     <span>
                                         <i class="fa fa-lock submit-icon"></i>
                                         Đăng nhập
@@ -128,6 +128,21 @@
                     },
                     function (data) {
                         console.log(data);
+                    }
+                );
+            });
+
+            $("#signinCreate").click(function () {
+
+                $.post("@Url.Action("DangNhap", "Customer")",
+                    {
+                        "UserName": $("#login-username").val(),
+                        "UserPassword": $("#login-password").val()
+                    },
+                    function (data) {
+                        if (data == 1) {
+                            window.location.href = "@Url.Action("Index", "Home")";
+                        }
                     }
                 );
             });

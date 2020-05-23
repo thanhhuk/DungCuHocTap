@@ -5,6 +5,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using Web_DungCuHocTap.Models;
 using Web_DungCuHocTap.Models.Models;
 
 namespace Web_DungCuHocTap.Controllers
@@ -34,6 +36,28 @@ namespace Web_DungCuHocTap.Controllers
             return Json(new { Success = 0 }, JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        public JsonResult DangNhap(LoginModel model)
+        {
+            string enc = MD5Hash(model.UserPassword);
+            var result = new WebDungCuHocTapDbContext().KhachHangs.Count(x => x.UserName == model.UserName && x.UserPassword == enc);
+
+            if (ModelState.IsValid && result > 0)
+            {
+                FormsAuthentication.SetAuthCookie(model.UserName, true);
+
+                return Json(1, JsonRequestBehavior.AllowGet);
+            }
+            return Json(0, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("DangKyDangNhap", "Customer");
+        }
+
         public static string MD5Hash(string input)
         {
             StringBuilder hash = new StringBuilder();
@@ -46,5 +70,13 @@ namespace Web_DungCuHocTap.Controllers
             }
             return hash.ToString();
         }
+        [Authorize]
+
+        public ActionResult Detail()
+        {
+            return View();
+        }
+
+        //form dang nhap-> dang ky cai form de authentication -> dang nhap thanh cong -> set cookie
     }
 }
