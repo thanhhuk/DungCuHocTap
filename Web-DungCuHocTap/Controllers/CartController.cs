@@ -10,7 +10,7 @@ namespace Web_DungCuHocTap.Controllers
 {
     public class CartController : Controller
     {
-        // GET: Cart
+        [Authorize]
         public ActionResult Cart()
         {
             return View();

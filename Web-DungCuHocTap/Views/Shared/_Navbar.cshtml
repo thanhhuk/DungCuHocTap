@@ -55,18 +55,19 @@
                     <div class="header-right-menu">
                         <nav>
                             <ul class="list-inline">
-                                <li><a href="checkout.html">THANH TOÁN</a></li>
-                                <!-- <li><a href="wishlist.html">Wishlist</a></li> -->
-                                <li><a href="@Url.Action("DangKyDangNhap", "Customer")">TÀI KHOẢN CỦA TÔI</a></li>
-                                <li><a href="@Url.Action("Cart", "Cart")">GIỎ HÀNG</a></li>
                                 @if (string.IsNullOrEmpty(cookiename))
                                 {
-                                    <li><a href="@Url.Action("DangKyDangNhap", "Customer")">ĐĂNG NHẬP</a></li>
+                                    <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                                    <li><a href="@Url.Action("DanhSachSanPham", "Shop")">Cửa hàng</a></li>
+                                    <li><a href="@Url.Action("Contact", "Home")">Liên hệ</a></li>
+                                    <li><a href="@Url.Action("DangKyDangNhap", "Customer")">Đăng nhập</a></li>
+                                    @*<li><a href="@Url.Action("DangKyDangNhap", "Customer")">Tài khoản của tôi</a></li>*@
                                 }
                                 else
                                 {
-                                    <li><a href="#">Hello @cookiename</a></li>
-                                    <li><a href="@Url.Action("Logout", "Customer")">Logout</a></li>
+                                    <li><a href="javascript:void(0)">Xin chào @cookiename</a></li>
+                                    <li><a href="#">Tài khoản của tôi</a></li>
+                                    <li><a id="log-out" href="@Url.Action("Logout", "Customer")">Đăng xuất</a></li>
                                 }
                             </ul>
                         </nav>
@@ -125,7 +126,7 @@
                             @if (session != null)
                             {
                                 decimal total = 0, subtotal = 0;
-                                <a class="shop-link" href="@Url.Action("Cart", "Cart")" title="View my shopping cart">
+                                <a id="view-cart" class="shop-link" href="@Url.Action("Cart", "Cart")" title="View my shopping cart">
                                     <i class="fa fa-shopping-cart cart-icon"></i>
                                     <b>giỏ hàng của tôi</b>
                                     <span class="ajax-cart-quantity">@session.Count</span>
@@ -286,3 +287,4 @@
         </div>
     </header>
 </header>
+

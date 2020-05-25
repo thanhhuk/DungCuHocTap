@@ -1,6 +1,6 @@
 ﻿@using Web_DungCuHocTap.Models
 @{
-    ViewBag.Title = "Cart";
+    ViewBag.Title = "Giỏ hàng";
     var session = Session["CartItem"] as List<CartModel>;
 }
 
@@ -10,7 +10,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!-- BSTORE-BREADCRUMB START -->
                 <div class="bstore-breadcrumb">
-                    <a href="@Url.Action("Index", "Home")">HOMe</a>
+                    <a href="@Url.Action("Index", "Home")">HOME</a>
                     <span><i class="fa fa-caret-right	"></i></span>
                     <span>GIỎ HÀNG</span>
                 </div>
@@ -38,12 +38,12 @@
                             <thead>
                                 <tr>
                                     <th class="cart-product">ID</th>
-                                    <th class="cart-product">Product</th>
-                                    <th class="cart-description">Description</th>
-                                    <th class="cart-unit text-right">Unit price</th>
-                                    <th class="cart_quantity text-center">Qty</th>
-                                    <th class="cart-delete">Options</th>
-                                    <th class="cart-total text-right">Total</th>
+                                    <th class="cart-product">Sản phẩm</th>
+                                    <th class="cart-description">Tên sản phẩm</th>
+                                    <th class="cart-unit text-right">Giá</th>
+                                    <th class="cart_quantity text-center">Số lượng</th>
+                                    <th class="cart-delete">Tuỳ chọn</th>
+                                    <th class="cart-total text-right">Tổng tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -102,12 +102,12 @@
                             <tfoot>
                                 <tr class="cart-total-price">
                                     <td class="cart_voucher" colspan="3" rowspan="4"></td>
-                                    <td class="text-right" colspan="3">Total products (tax excl.)</td>
+                                    <td class="text-center" colspan="3">Total products (tax excl.)</td>
                                     <td id="total_product" class="price" colspan="1">@total.ToString("#,##0") đ</td>
                                 </tr>
                                 <tr>
                                     <td class="total-price-container text-center" colspan="3" rowspan="4">
-                                        <span>Total</span>
+                                        <span>Tổng tiền</span>
                                     </td>
                                     <td id="total-price-container" class="price" colspan="1">
                                         <span id="total-price">@total.ToString("#,##0") đ</span>

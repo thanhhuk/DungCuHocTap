@@ -55,6 +55,7 @@ namespace Web_DungCuHocTap.Controllers
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
+            Session["CartItem"] = null;
             return RedirectToAction("DangKyDangNhap", "Customer");
         }
 
