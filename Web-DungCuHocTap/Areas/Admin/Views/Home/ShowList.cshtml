@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Web_DungCuHocTap.Models.Models.SanPham>
+@{
+    ViewBag.Title = "ShowList";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card card-default">
+            @*<div class="card-header card-header-border-bottom">
+                <h2>Table head options</h2>
+            </div>*@
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Tên</th>
+                            <th scope="col">Giá</th>
+                            <th scope="col">Loại</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td scope="row">@item.MaSP</td>
+                                <td>@item.TenSP</td>
+                                <td>@item.GiaSP</td>
+                                <td>@item.Loai.TenLoai</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
