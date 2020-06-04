@@ -5,19 +5,24 @@
 }
 
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg">
         <div class="card card-default">
             @*<div class="card-header card-header-border-bottom">
-                <h2>Table head options</h2>
-            </div>*@
+                    <h2>Table head options</h2>
+                </div>*@
             <div class="card-body">
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Anh</th>
                             <th scope="col">Tên</th>
                             <th scope="col">Giá</th>
                             <th scope="col">Loại</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Delte</th>
+                            <th scope="col">Edit</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -25,9 +30,22 @@
                         {
                             <tr>
                                 <td scope="row">@item.MaSP</td>
+                                <td><img src="@item.AnhSP_1" style="height: 100px; "/></td>
                                 <td>@item.TenSP</td>
-                                <td>@item.GiaSP</td>
+                                <td>@item.GiaSP.ToString("#,##0")</td>
                                 <td>@item.Loai.TenLoai</td>
+                                <td>@item.NgayTao</td>
+                                <td>@item.TrangThaiSP</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger button-delete" value="@item.MaSP">
+                                        <span><i class="mdi mdi-trash-can"></i></span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-danger button-edit" value="@item.MaSP">
+                                        <span><i class="mdi mdi-pencil"></i></span>
+                                    </button>
+                                </td>
                             </tr>
                         }
                     </tbody>
@@ -36,5 +54,22 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".button-delete").click(function () {
+                $.post(`@Url.Action("DeleteProduct", "Home")?id=${this.value}`, function (data) {
+                    if (data == 1) {
+                        alert("Xoa thanh cong");
+                        location.reload();
+                    } else {
+                        alert("Xoa KHONG thanh cong");
+                    }
+                });
+            });
+        });
+    </script>
+}
 
 

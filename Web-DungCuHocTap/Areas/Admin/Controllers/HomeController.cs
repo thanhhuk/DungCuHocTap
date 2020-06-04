@@ -9,6 +9,7 @@ namespace Web_DungCuHocTap.Areas.Admin.Controllers
 {
     public class HomeController : MiddlewareController
     {
+        WebDungCuHocTapDbContext db = new WebDungCuHocTapDbContext();
         // GET: Admin/Home
         public ActionResult Index()
         {
@@ -17,8 +18,29 @@ namespace Web_DungCuHocTap.Areas.Admin.Controllers
 
         public ActionResult ShowList()
         {
-            var list = new WebDungCuHocTapDbContext().SanPhams.ToList();
+            var list = db.SanPhams.ToList();
             return View(list);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteProduct(int id)
+        {
+            try
+            {
+                var item = db.SanPhams.Find(id);
+                if (item == null)
+                {
+                    return Json(0, JsonRequestBehavior.AllowGet);
+                }
+                db.SanPhams.Remove(item);
+                db.SaveChanges();
+                return Json(1, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(0, JsonRequestBehavior.AllowGet);
+            }
+
         }
     }
 }
