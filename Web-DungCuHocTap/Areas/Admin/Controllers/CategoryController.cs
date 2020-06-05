@@ -62,5 +62,29 @@ namespace Web_DungCuHocTap.Areas.Admin.Controllers
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
         }
+
+        public JsonResult AddProduct(SanPham model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var sp = new SanPham
+                    {
+                        TenSP = model.TenSP,
+                        //MetaKeyword = SlugGenerator.SlugGenerator.GenerateSlug(model.TenLoai),
+                        NgayTao = DateTime.Now
+                    };
+                    db.SanPhams.Add(sp);
+                    db.SaveChanges();
+                    return Json(sp.MaSP, JsonRequestBehavior.AllowGet);
+                }
+                return Json(0, JsonRequestBehavior.AllowGet);
+            }
+            catch
+            {
+                return Json(0, JsonRequestBehavior.AllowGet);
+            }
+        }
     }
 }

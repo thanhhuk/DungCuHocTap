@@ -9,12 +9,12 @@
     <div class="col-lg-6">
         <div class="card card-default">
             <div class="card-header card-header-border-bottom">
-                <h2>Add Category</h2>
+                <h2>Thêm loại sản phẩm</h2>
             </div>
             <div class="card-body">
                 <form action="#" id="add-category-form">
                     <div class="form-group">
-                        <input type="text" class="form-control input-lg" id="category-name" placeholder="Large input">
+                        <input type="text" class="form-control input-lg" id="category-name" placeholder="Nhập...">
                     </div>
                     <div>
                         <p id="category-url"></p>
@@ -83,10 +83,10 @@
                     "TenLoai": $("#category-name").val()
                 }, function (data) {
                     if (data > 0) {
-                        alert(`Da them danh cong voi id ${data}`);
+                        alert(`Đã thêm thành công id ${data}`);
                         location.reload();
                     } else {
-                        alert(`Them category co loi`);
+                        alert(`Thêm không thành công`);
                     }
                 }
                 );
