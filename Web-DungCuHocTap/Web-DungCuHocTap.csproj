@@ -136,6 +136,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\MiddlewareController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
     <Compile Include="Areas\Admin\Models\LoginModel.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
@@ -1010,7 +1011,6 @@
     <Content Include="Views\Shop\DanhSachPhanLoai.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Middleware\" />
     <Folder Include="Models\DAO\" />
   </ItemGroup>
   <ItemGroup>
