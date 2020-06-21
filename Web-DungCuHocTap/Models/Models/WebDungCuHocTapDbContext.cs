@@ -15,11 +15,11 @@ namespace Web_DungCuHocTap.Models.Models
         public virtual DbSet<Admin> Admins { get; set; }
         public virtual DbSet<ChiTietDH> ChiTietDHs { get; set; }
         public virtual DbSet<ChiTietSP> ChiTietSPs { get; set; }
+        public virtual DbSet<Color> Colors { get; set; }
         public virtual DbSet<DatHang> DatHangs { get; set; }
         public virtual DbSet<GiamGia> GiamGias { get; set; }
         public virtual DbSet<KhachHang> KhachHangs { get; set; }
         public virtual DbSet<Loai> Loais { get; set; }
-        public virtual DbSet<NhaCC> NhaCCs { get; set; }
         public virtual DbSet<SanPham> SanPhams { get; set; }
         public virtual DbSet<TrangThaiDH> TrangThaiDHs { get; set; }
 

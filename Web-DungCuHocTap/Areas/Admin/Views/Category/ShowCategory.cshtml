@@ -1,0 +1,111 @@
+﻿@model IEnumerable<Web_DungCuHocTap.Models.Models.Loai>
+
+@{
+    ViewBag.Title = "ShowCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-6">
+        <div class="card card-default">
+            <div class="card-header card-header-border-bottom">
+                <h2>Thêm loại sản phẩm</h2>
+            </div>
+            <div class="card-body">
+                <form action="#" id="add-category-form">
+                    <div class="form-group">
+                        <input type="text" class="form-control input-lg" id="category-name" placeholder="Nhập...">
+                    </div>
+                    <div>
+                        <p id="category-url"></p>
+                    </div>
+                    <div class="form-footer pt-5 border-top">
+                        <button type="submit" class="btn btn-primary btn-default">Add</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card card-default">
+            @*<div class="card-header card-header-border-bottom">
+                    <h2>Table head options</h2>
+                </div>*@
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Ten loai</th>
+                            <th scope="col">URL</th>
+                            <th scope="col">Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td scope="row">@item.MaLoai</td>
+                                <td>@item.TenLoai</td>
+                                <td>@item.MetaKeyword</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger button-delete" value="@item.MaLoai">
+                                        <span><i class="mdi mdi-trash-can"></i></span>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $(".button-delete").click(function () {
+                //console.log(this.value); biến javasciprt
+                $.post(`@Url.Action("DeleteCategory", "Category")?id=${this.value}`, function (data) {
+                    if (data == 1) {
+                        alert("Xoa thanh cong");
+                        location.reload();
+                    } else {
+                        alert("Xoa KHONG thanh cong");
+                    }
+                });
+            });
+
+            $("#add-category-form").submit(function (event) {
+
+                $.post("@Url.Action("AddCategory", "Category")", {
+                    "TenLoai": $("#category-name").val()
+                }, function (data) {
+                    if (data > 0) {
+                        alert(`Đã thêm thành công id ${data}`);
+                        location.reload();
+                    } else {
+                        alert(`Thêm không thành công`);
+                    }
+                }
+                );
+
+                event.preventDefault();
+            });
+
+            $("#category-name").on('input', function (e) {
+                $("#category-url").text(slugify($("#category-name").val()));
+            });
+
+            function slugify(text) {
+                return text.toString().toLowerCase()
+                    .replace(/\s+/g, '-')           // Replace spaces with -
+                    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+                    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+                    .replace(/^-+/, '')             // Trim - from start of text
+                    .replace(/-+$/, '');            // Trim - from end of text
+            }
+        });
+    </script>
+}
