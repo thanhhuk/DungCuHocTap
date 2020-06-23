@@ -14,9 +14,9 @@ namespace Web_DungCuHocTap.Models.Models
 
         public int? MaSP { get; set; }
 
-        public int? MaMau { get; set; }
+        public int? MaNCC { get; set; }
 
-        public virtual Color Color { get; set; }
+        public virtual NhaCC NhaCC { get; set; }
 
         public virtual SanPham SanPham { get; set; }
     }

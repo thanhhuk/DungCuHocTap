@@ -1,7 +1,7 @@
 ﻿@model Web_DungCuHocTap.Models.Models.SanPham
 
 @{
-    ViewBag.Title = Model.TenSP;
+    ViewBag.Title = "ChiTietSanPham";
 }
 
 <section class="main-content-section">
@@ -10,10 +10,10 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <!-- BSTORE-BREADCRUMB START -->
                 <div class="bstore-breadcrumb">
-                    <a href="@Url.Action("Index", "Home")">Home<span><i class="fa fa-caret-right"></i> </span> </a>
+                    <a href="@Url.Action("Index", "Home")">HOMe<span><i class="fa fa-caret-right"></i> </span> </a>
                     <span> <i class="fa fa-caret-right"> </i> </span>
-                    <a href="@Url.Action("DanhSachSanPham", "Shop")"> Danh sách sản phẩm </a>
-                    <span> @Model.TenSP </span>
+                    <a href="@Url.Action("DanhSachSanPham", "Shop")"> Shop </a>
+                    <span> Faded Short Sleeves T-shirt </span>
                 </div>
                 <!-- BSTORE-BREADCRUMB END -->
             </div>
@@ -59,41 +59,40 @@
                             <h2>@Model.TenSP</h2>
                             <div class="single-product-review-box">
                                 <div class="rating-box">
-                                    @Model.Rating
-                                    <i class="fa fa-star"></i>
-                                    @*<i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
-                                    <i class="fa fa-star-half-empty"></i>*@
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-empty"></i>
                                 </div>
                             </div>
                             <div class="single-product-condition">
-                                <p>Thể loại: @Model.Loai.TenLoai</p>
+                                <p>The loai: <span>@Model.Loai.TenLoai</span></p>
                             </div>
                             <div class="single-product-price">
-                                <h2>@Model.GiaSP.ToString("#,##0") VNĐ</h2>
+                                <h2>@Model.GiaSP VNĐ</h2>
                             </div>
-                            @*<div class="single-product-desc">
+                            <div class="single-product-desc">
                                 <p>Faded short sleeves t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!</p>
                                 <div class="product-in-stock">
                                     <p>300 Items<span>In stock</span></p>
                                 </div>
-                            </div>*@
-                            @*<div class="single-product-info">
+                            </div>
+                            <div class="single-product-info">
                                 <a href="#"><i class="fa fa-envelope"></i></a>
                                 <a href="#"><i class="fa fa-print"></i></a>
                                 <a href="#"><i class="fa fa-heart"></i></a>
-                            </div>*@
+                            </div>
                             <div class="single-product-quantity">
-                                <p class="small-title">Số lượng</p>
+                                <p class="small-title">Quantity</p>
                                 <div class="cart-quantity">
                                     <div class="cart-plus-minus-button single-qty-btn">
-                                        <input id="item-quantity" class="cart-plus-minus sing-pro-qty" type="text" name="qtybutton" value="1">
+                                        <input class="cart-plus-minus sing-pro-qty" type="text" name="qtybutton" value="1">
                                     </div>
                                 </div>
                             </div>
                             <div class="single-product-add-cart">
-                                <a id="add-item" class="add-cart-text" title="Add to cart" href="javascript:void(0);">Thêm vào giỏ hàng</a>
+                                <a class="add-cart-text" title="Add to cart" href="#">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -105,17 +104,17 @@
                         <div class="product-more-info-tab">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs more-info-tab">
-                                <li class="active"><a href="javascipt:void(0)" data-toggle="tab">Mô tả</a></li>
-                                @*<li><a href="#datasheet" data-toggle="tab">data sheet</a></li>*@
+                                <li class="active"><a href="#moreinfo" data-toggle="tab">more info</a></li>
+                                <li><a href="#datasheet" data-toggle="tab">data sheet</a></li>
                             </ul>
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div class="tab-pane active" id="moreinfo">
                                     <div class="tab-description">
-                                        <p>@Model.MotaSP</p>
+                                        <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes, hats, belts and more!</p>
                                     </div>
                                 </div>
-                                @*<div class="tab-pane" id="datasheet">
+                                <div class="tab-pane" id="datasheet">
                                     <div class="deta-sheet">
                                         <table class="table-data-sheet">
                                             <tbody>
@@ -134,7 +133,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                </div>*@
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -145,14 +144,35 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <!-- SINGLE SIDE BAR START -->
                 <div class="single-product-right-sidebar">
-                    <h2 class="left-title">Sản phẩm tương tự</h2>
+                    <h2 class="left-title">Viewed products</h2>
                     <ul>
                         <li>
-                            @*<a href="#"><img src="img/product/sidebar_product/2.jpg" alt="" /></a>
-        <div class="r-sidebar-pro-content">
-            <h5><a href="#">Faded Short ...</a></h5>
-            <p>Faded short sleeves t-shirt with high...</p>
-        </div>*@
+                            <a href="#"><img src="img/product/sidebar_product/2.jpg" alt="" /></a>
+                            <div class="r-sidebar-pro-content">
+                                <h5><a href="#">Faded Short ...</a></h5>
+                                <p>Faded short sleeves t-shirt with high...</p>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/product/sidebar_product/4.jpg" alt="" /></a>
+                            <div class="r-sidebar-pro-content">
+                                <h5><a href="#">Printed Chif ..</a></h5>
+                                <p>Printed chiffon knee length dress...</p>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/product/sidebar_product/6.jpg" alt="" /></a>
+                            <div class="r-sidebar-pro-content">
+                                <h5><a href="#">Printed Sum ...</a></h5>
+                                <p>Long printed dress with thin...</p>
+                            </div>
+                        </li>
+                        <li>
+                            <a href="#"><img src="img/product/sidebar_product/1.jpg" alt="" /></a>
+                            <div class="r-sidebar-pro-content">
+                                <h5><a href="#">Printed Dress </a></h5>
+                                <p>100% cotton double printed dress....</p>
+                            </div>
                         </li>
                     </ul>
                 </div>
@@ -184,19 +204,3 @@
         </div>
     </div>
 </section>
-
-@section scripts{
-    <script>
-        $(document).ready(function(){
-            $("#add-item").click(function () {
-                $.get("@Url.Action("AddItem", "Cart")", {
-                    "quantity": $("#item-quantity").val(),
-                    "id": "@Model.MaSP"
-                }, function (data) {
-                    alert("Đã thêm vào giỏ hàng");
-                    window.location.href = "@Url.Action("ChiTietSanPham", "Shop", new { id = Model.MaSP })";
-                });
-            });
-        });
-    </script>
-}

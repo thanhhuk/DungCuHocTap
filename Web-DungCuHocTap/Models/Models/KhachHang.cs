@@ -32,7 +32,7 @@ namespace Web_DungCuHocTap.Models.Models
         [Required]
         [StringLength(255)]
         public string TenKH { get; set; }
-        
+
         [StringLength(20)]
         public string SDTKH { get; set; }
 
